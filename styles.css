@@ -95,12 +95,14 @@ header {
     margin-right: auto;
 }
 /* Testimonials */
-
 .testimonials {
     position: relative;
     margin: 48px auto;
     max-width: 920px;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    box-sizing: content-box; /* Ensure padding doesn't affect the container width */
 }
 
 .testimonial-container {
@@ -109,11 +111,21 @@ header {
 }
 
 .testimonial {
-    flex: 0 0 300px;
-    background: #f3f4f6;
+    width: 279px;
+    height: 200px;
+    flex-direction: column;
+    background: #E8E5EF;
     padding: 24px;
     margin: 0 12px;
-    border-radius: 8px;
+    border-radius: 10px;
+    text-align: left;
+
+}
+
+.testimonial-left {
+    display: flex;
+    align-items: center; /* Align avatar and name/position vertically */
+    margin-bottom: 12px; /* Space between top row and quote */
 }
 
 .testimonial-avatar {
@@ -121,9 +133,27 @@ header {
     height: 48px;
     background: #ddd;
     border-radius: 50%;
-    margin-bottom: 16px;
+    margin-right: 12px; /* Space between avatar and name/position */
+    flex-shrink: 0;
 }
 
+.testimonial-left h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.testimonial-left p {
+    font-size: 12px;
+    color: #666;
+    margin: 0;
+}
+
+.testimonial p {
+    font-size: 14px;
+    color: #666;
+    margin-top: 0px;
+}
 .nav-button {
     position: absolute;
     top: 50%;
@@ -141,50 +171,78 @@ header {
     z-index: 10;
 }
 
-.prev { left: -20px; }
-.next { right: -20px; }
+.prev {
+    left: 0px; /* Adjust to move the button outside the container */
+}
+
+.next {
+    right: 0px; /* Adjust to move the button outside the container */
+}
+
 
 /* Features section */
 .features {
     background: #FFE5E4;
-    padding: 64px 0;
+    padding: 80px 0;
 }
 
 .features h2 {
     text-align: center;
-    font-size: 36px;
-    margin-bottom: 48px;
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 80px;
 }
 
 .feature-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 48px;
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
 .feature-content h3 {
-    font-size: 24px;
+    font-size: 40px;
+    font-weight: 500;
     margin-bottom: 16px;
+    line-height: 48px;
 }
 
 .feature-image {
     background: #ddd;
     border-radius: 8px;
     aspect-ratio: 16/9;
+    padding-left: 65px;
 }
 
 /* FAQ section */
 .faq {
     padding: 64px 24px;
-    max-width: 800px;
     margin: 0 auto;
+    background-color: #F8F9FA; /* Adjust to your desired background color */
+    border-top-left-radius: 100px;
+    border-top-right-radius: 100px;
+    position: relative;
+}
+
+.faq::after {
+    content: '';
+    position: absolute;
+    bottom: 100px; /* Adjust to control the position of the pink background */
+    left: 0;
+    width: 100%;
+    height: 2000px; /* Adjust height to control how much pink shows below */
+    background-color: #FFE5E4; /* Your pink color */
+    z-index: -1; /* Puts this background behind the hero content */
 }
 
 .faq h2 {
-    font-size: 24px;
-    margin-bottom: 32px;
+    font-size: 40px;
+    font-weight: 500;
+    margin-bottom: 16px;
+    max-width: 1110px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .faq-item {
@@ -192,13 +250,16 @@ header {
 }
 
 .faq-question {
-    background: #F3E8FF;
+    background: #E9E8FF;
     padding: 16px 24px;
     border-radius: 8px;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 1110px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .faq-question:hover {
@@ -216,6 +277,9 @@ header {
     overflow: hidden;
     transition: all 0.3s ease-in-out;
     border-radius: 0 0 8px 8px;
+    max-width: 1110px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .faq-item.active .faq-arrow {
@@ -229,7 +293,7 @@ header {
 
 /* Footer */
 footer {
-    background: #f3f4f6;
+    background: #F8F9FA;
     padding: 64px 24px;
     text-align: center;
 }
@@ -259,17 +323,68 @@ footer h2 {
     font-size: 14px;
 }
 
-@media (max-width: 768px) {
-    .hero h1 {
-        font-size: 36px;
+/* Adjustments for screens below 600px (mobile devices) */
+@media (max-width: 600px) {
+    .hero {
+        height: 100vh;
     }
-    
+    .hero h1 {
+        font-size: 28px;
+        padding: 16px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .testimonial-container {
+        display: flex;
+        transition: transform 0.3s ease;
+        overflow: hidden;
+    }
+
+    .testimonial {
+        width: 100%; /* Full width for single testimonial */
+        margin: 0 auto;
+    }
+
+
+    .nav-button {
+        width: 30px;
+        height: 30px;
+    }
+
     .feature-grid {
         grid-template-columns: 1fr;
     }
-    
+
+    .feature-content h3 {
+        font-size: 24px;
+    }
+
+    .faq h2 {
+        font-size: 28px;
+    }
+
     .social-links {
         flex-direction: column;
-        gap: 16px;
+    }
+
+    footer h2 {
+        font-size: 20px;
+    }
+}
+
+/* Tablet adjustments */
+@media (min-width: 601px) and (max-width: 992px) {
+    .testimonial-container {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+    }
+
+    .testimonial {
+        width: 80%; /* Reduce testimonial width on tablets */
+        scroll-snap-align: start; /* Snap testimonials for swipe effect */
     }
 }
